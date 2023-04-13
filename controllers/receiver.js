@@ -27,6 +27,7 @@ exports.signup = async (req, res, next) => {
       password: hashedPassword,
       name: name,
       bloodGroup: bloodGroup,
+      role: 'RECEIVER',
     });
 
     const result = await receiver.save();
@@ -67,6 +68,7 @@ exports.login = async (req, res, next) => {
       {
         email: userDoc.email,
         userId: userDoc._id.toString(),
+        role: userDoc.role,
       },
       'secretPrivateKeyForSigning',
       { expiresIn: '1h' }

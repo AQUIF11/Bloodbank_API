@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const { roleList } = require('./roles');
+
 module.exports = (req, res, next) => {
   const authHeader = req.get('Authorization');
 
@@ -25,6 +27,14 @@ module.exports = (req, res, next) => {
     throw error;
   }
 
-  req.userId = decodedToken.userId;
+  // CODE FOR ROLE-BASED-ACCESS-CONTROL
+  if (roleList[decodedToken.role].find((url) => url === req.baseUrl)) {
+    req.userId = decodedToken.userId;
+  } else {
+    const error = new Error('Not Authorized to access this route!');
+    error.statusCode = 403;
+    throw error;
+  }
+
   next();
 };

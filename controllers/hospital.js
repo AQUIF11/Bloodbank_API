@@ -25,6 +25,7 @@ exports.signup = async (req, res, next) => {
       email: email,
       password: hashedPassword,
       name: name,
+      role: 'HOSPITAL',
     });
 
     const result = await hospital.save();
@@ -65,6 +66,7 @@ exports.login = async (req, res, next) => {
       {
         email: userDoc.email,
         userId: userDoc._id.toString(),
+        role: userDoc.role,
       },
       'secretPrivateKeyForSigning',
       { expiresIn: '1h' }
