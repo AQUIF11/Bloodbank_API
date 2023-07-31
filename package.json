@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "BloodBank API Project",
   "main": "app.js",
+  "engines": {
+    "node": "18.15.0",
+    "npm": "9.5.0"
+  },
   "scripts": {
     "start": "node app.js"
   },
