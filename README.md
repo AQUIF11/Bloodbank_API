@@ -1,6 +1,5 @@
 # Bloodbank_API
-Bloodbank API developed using node-js(express+mongodb). This is only in development stage. Features such as environment variables and other machine dependent 
-parameters need to added to make it production ready.
+Bloodbank API developed using node-js(express+mongodb). The Application is configured for both development and production deployments. Refer to config folder to check which environment variables need to be set for production deployment.
 
 ## Requests served by the API(with request format)
 
