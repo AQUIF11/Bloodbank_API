@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator/check');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+const keys = require('../config/keys');
 const Hospital = require('../models/hospital');
 const BloodSample = require('../models/blood-sample');
 const Receiver = require('../models/receiver');
@@ -68,7 +69,7 @@ exports.login = async (req, res, next) => {
         userId: userDoc._id.toString(),
         role: userDoc.role,
       },
-      'secretPrivateKeyForSigning',
+      keys.jwtTokenKey,
       { expiresIn: '1h' }
     );
 

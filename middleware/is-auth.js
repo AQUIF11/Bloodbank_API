@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+const keys = require('../config/keys');
 const { roleList } = require('./roles');
 
 module.exports = (req, res, next) => {
@@ -15,7 +16,7 @@ module.exports = (req, res, next) => {
   const token = authHeader.split(' ')[1];
   let decodedToken;
   try {
-    decodedToken = jwt.verify(token, 'secretPrivateKeyForSigning');
+    decodedToken = jwt.verify(token, keys.jwtTokenKey);
   } catch (error) {
     error.statusCode = 500;
     throw error;

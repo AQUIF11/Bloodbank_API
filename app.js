@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 
+const keys = require('./config/keys');
 const hospitalRoutes = require('./routes/hospital');
 const receiverRoutes = require('./routes/receiver');
 const publicRoutes = require('./routes/public');
@@ -38,8 +39,7 @@ app.use((error, req, res, next) => {
   });
 });
 
-const MONGODB_URI =
-  'mongodb+srv://mongodb_1:regirock_11@cluster0.ol6id.mongodb.net/bloodbank?retryWrites=true&w=majority';
+const MONGODB_URI = keys.mongoURI;
 
 mongoose
   .connect(MONGODB_URI)
